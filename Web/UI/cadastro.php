@@ -1,38 +1,34 @@
 <?php
 if(isset($_GET["id"])){
   $id = "";
+  $paroquia = "";
+  $paroco = "";
   $email = "";
-  $nome = "";
   $senha = "";
   $cnpj = "";
-  $cep = "";
+  $estado = "";
   $cidade = "";
+  $cep = "";
   $endereco = "";
   $numero = "";
-  $complemento = "";
   $telefone = "";
-  $cartao = "";
-  $dinheiro = "";
-  $pix = "";
   $action = "";
 }
 
 else{
   $id = "";
+  $paroquia = "";
+  $paroco = "";
   $email = "";
-  $nome = "";
   $senha = "";
   $cnpj = "";
-  $cep = "";
+  $estado = "";
   $cidade = "";
+  $cep = "";
   $endereco = "";
   $numero = "";
-  $complemento = "";
   $telefone = "";
-  $cartao = "";
-  $dinheiro = "";
-  $pix = "";
-  $action = "../BLL/inserir.php";
+  $action = "../BLL/inserirParoquia.php";
 }
 ?>
 
@@ -78,15 +74,15 @@ else{
         <div class="col-12 col-sm-3">
         </div>
         <div class="col-12 col-sm-9">
-            <form name="cadastroIgreja" action="<?php echo $action ?>?id=<?php echo $id ?>"  method="post">
+            <form name="cadastroIgreja" action="<?php echo $action ?>?id=<?php echo $id ?>"  method="post" enctype="multipart/form-data">
                 <div class="col-12 col-sm-8">
                     <label for="exampleFormControlInput1" class="form-label"><b>Nome da Paróquia </b></label>
-                    <input type="text" class="form-control" placeholder="Nome da Paróquia" name="nome" value="<?php echo $nome ?>" required>
+                    <input type="text" class="form-control" placeholder="Nome da Paróquia" name="paroquia" value="<?php echo $paroquia ?>" required>
                 </div>
                 <br>
                 <div class="col-12 col-sm-8">
                     <label for="exampleFormControlInput1" class="form-label"><b>Nome do Pároco </b></label>
-                    <input type="text" class="form-control" placeholder="Nome do Pároco" name="nomeParoco" value="<?php echo $nome ?>" required>
+                    <input type="text" class="form-control" placeholder="Nome do Pároco" name="paroco" value="<?php echo $paroco ?>" required>
                 </div>
                 <br>
                 <div class="col-12 col-sm-8">
@@ -111,7 +107,7 @@ else{
                 <br>
                 <div class="col-12 col-sm-8">
                     <label for="exampleFormControlInput1" class="form-label"><b>Estado </b></label>
-                    <input type="text" class="form-control" placeholder="Estado" name="estado" value="<?php echo $cidade ?>" required>
+                    <input type="text" class="form-control" placeholder="Estado" name="estado" value="<?php echo $estado ?>" required>
                 </div>
                 <br>
                 <div class="col-12 col-sm-8">
@@ -135,13 +131,13 @@ else{
                 </div>
                 <br>
                 <div class="col-12 col-sm-8">
-                    <label for="exampleFormControlInput1" class="form-label"><b>Complemento </b></label>
-                    <input type="text" class="form-control" placeholder="Complemento" name="complemento" value="<?php echo $complemento ?>">
+                    <label for="exampleFormControlInput1" class="form-label"><b>Telefone </b></label>
+                    <input type="text" class="form-control" placeholder="Telefone" name="telefone" value="<?php echo $telefone ?>" required>
                 </div>
                 <br>
                 <div class="col-12 col-sm-8">
-                    <label for="exampleFormControlInput1" class="form-label"><b>Telefone </b></label>
-                    <input type="text" class="form-control" placeholder="Telefone" name="telefone" value="<?php echo $telefone ?>" required>
+                    <label for="exampleFormControlFile1"><b>Insira a foto da paróquia: </b></label>
+                    <input type="file" id="arquivo1" name="arquivo" required>
                 </div>
                 <br>
                 <div class="container-fluid">
