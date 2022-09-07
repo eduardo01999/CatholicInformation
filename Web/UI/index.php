@@ -28,7 +28,7 @@
     <div class="container">
         <main class="row align-items-center">
         <div class="col align-self-center">
-            <form action="../BLL/process_login.php" method="POST">
+            <form action="../BLL/processoLogin.php" method="POST">
                 <div class="form-group">
                     <label><b>Endereço de e-mail: </b></label>
                     <input type="email" name="email" class="form-control" id="email">

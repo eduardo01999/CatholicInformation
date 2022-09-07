@@ -1,3 +1,7 @@
+<?php
+session_start();
+$id = $_GET["id"];
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
