@@ -35,6 +35,7 @@ try {
                 $id = $v["id"];
             }
             $SESSION['email']=$email;
+            $SESSION['id']=$id;
 
             header("Location: ../UI/home.php?id=$id");
             exit();
