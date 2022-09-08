@@ -17,16 +17,14 @@ try {
         $novoNomeArquivo = uniqid();
         $extensao = strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
       
-        if($extensao != 'jpg' && $extensao != 'png')
-            die("Tipo de arquivo não aceito");
       
       
         $path = $pasta . $novoNomeArquivo . "." . $extensao;
       
         $deuCerto = move_uploaded_file($arquivo["tmp_name"], $path);
         if($deuCerto) {
-            $conexao->query("INSERT INTO postagem (id, id_paroquia, descricao, path) 
-            VALUES (NULL, '$idparoquia', '$descricao', '$path')") or die($conexao->error);
+            $conexao->query("INSERT INTO postagem (id, id_paroquia, descricao, path, data_inclusao, extensao) 
+            VALUES (NULL, '$idparoquia', '$descricao', '$path', NOW(), $extensao)") or die($conexao->error);
             echo "Registro efetuado com sucesso!";
         }
             

@@ -70,7 +70,7 @@ $id = $_GET["id"];
                         <div class="col align-self-start">
                         </div>
                         <div class="col align-self-center">
-
+                        <br>
                             <button style="background-color: #0844a4; color:white; width: 250px; height: 70px; font-size: 23px; font-weight:bold" onclick="OpenPopupCenter('inserePostagem.php?id=<?php echo $id; ?>', 'TEST!?', 800, 600);">
                                 Fazer Públicação
                             </button>
@@ -79,6 +79,89 @@ $id = $_GET["id"];
                         </div>
                     </div>
             </div>
+        </main>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!-- Inicio de postagens realizadas -->
+    <div class="container">
+        <main class="row align-items-center">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-2">
+                </div>
+                <div class="col-12 col-sm-9">
+                    <!-- inicio do card para postagem -->
+                    <?php
+                        include("../DAL/conecta.php");
+
+                        try {
+                        $stmt = $conn->prepare("SELECT post.id as id_postagem, post.id_paroquia, post.descricao, post.path as path_postagem, post.data_inclusao, post.extensao,
+                                                par.paroquia, par.path as path_paroquia, par.id as id_da_paroquia
+                                                FROM postagem post, paroquia par where $id = id_paroquia and par.id = id_paroquia ORDER BY post.data_inclusao DESC"); 
+                        $stmt->execute();
+
+                        // set the resulting array to associative
+                        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+                        foreach($stmt->fetchAll() as $k=>$v) { 
+                            if ($v["extensao"] == "mp4" or $v["extensao"] == "webm" or $v["extensao"] == "ogg") {
+                                ?>
+                                <br>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> <img src="<?php echo $v["path_paroquia"] ?>" alt="imagemPerfil" class="rounded-circle" width= 60px height= 60px> <?php echo $v["paroquia"] ?></h5>
+                                        <p class="card-text"><?php echo $v["descricao"] ?></p>
+                                        <p class="card-text" style="text-align: end;"><small class="text-muted">Públicado em: <?php echo $v["data_inclusao"] ?></small></p>
+                                    </div>
+                                    <video src="<?php echo $v["path_postagem"] ?>"> 
+                                        <object>
+                                            <embed src="demo.mp4" type="application/x-shockwave-flash" 
+                                            allowfullscreen="true" allowscriptaccess="always">  		
+                                        </object>
+                                    </video>
+                                </div>
+                                <?php
+                            }
+                            else {
+                                ?>
+                                <br>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> <img src="../UI/imagemPostagem/631a2ffd585f8.png" alt="imagemPerfil" class="rounded-circle" width= 60px height= 60px> <?php echo $v["paroquia"] ?></h5>
+                                        <p class="card-text"><?php echo $v["descricao"] ?></p>
+                                        <p class="card-text" style="text-align: end;"><small class="text-muted">Públicado em: <?php echo $v["data_inclusao"] ?></small></p>
+                                    </div>
+                                    <img class="card-img-bottom" src="<?php echo $v["path_postagem"] ?>" alt="imagem da postagem">
+                                </div>
+                                <?php
+                            }
+                        }
+                        } catch(PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                        }
+                        $conn = null;
+                    ?>
+
+                    <!-- SALVAR
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"> <img src="../UI/imagemPostagem/631a2ffd585f8.png" alt="imagemPerfil" class="rounded-circle" width= 60px height= 60px> Título do card</h5>
+                            <p class="card-text">Este é um card maior com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional. Este conteúdo é um pouco maior, para demonstração.</p>
+                            <p class="card-text"><small class="text-muted">Atualizados 3 minutos atrás</small></p>
+                        </div>
+                        <img class="card-img-bottom" src="../UI/imagemPostagem/631a2ffd585f8.png" alt="imagem da postagem">
+                        <video src="../UI/imagemPostagem/testando.mp4"> 
+                            <object>
+                                <embed src="demo.mp4" type="application/x-shockwave-flash" 
+                                allowfullscreen="true" allowscriptaccess="always">  		
+                            </object>
+                        </video>
+                    </div>
+                    -->
+                </div>
+            </div> 
+            <!-- fim do card de postagem -->
         </main>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

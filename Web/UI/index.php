@@ -52,13 +52,13 @@
                 </div>
             </form>
             <div class="container-fluid">
-            <header class="row">
-            <div class="col-12 col-sm-3">
-            </div>
-            <div class="col-12 col-sm-9">
-                <p>Caso não possua cadastro <a href="cadastro.php">clique aqui</a></p>
-            </div>
-        </div>         
+                <header class="row">
+                <div class="col-12 col-sm-3">
+                </div>
+                <div class="col-12 col-sm-9">
+                    <p>Caso não possua cadastro <a href="cadastro.php">clique aqui</a></p>
+                </div>
+            </div>         
         </main>
     </div>
 
