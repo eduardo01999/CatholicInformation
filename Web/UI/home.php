@@ -38,11 +38,15 @@ $id = $_GET["id"];
                 <div class="row">
                     <div class="col-12 col-sm-2">
                     </div>
-                    <div class="col-12 col-sm-8">
+                    <div class="col-12 col-sm-5">
+                    </div>
+                    <!-- Icone para acessar menu usuario-->
+                    <div class="col-12 col-sm-3">
+                        <a href='index.php'><i class="fa-solid fa-circle-user"></i><br>Horários</a>
                     </div>
                     <!-- Icone para acessar menu usuario-->
                     <div class="col-12 col-sm-2">
-                        <a href='index.php'><i class="fa-solid fa-circle-user"></i><br>Perfil</a>
+                        <a href='perfil.php?id=<?php echo $id; ?>'><i class="fa-solid fa-circle-user"></i><br>Perfil</a>
                     </div>
                 </div>
             </div>
@@ -71,7 +75,7 @@ $id = $_GET["id"];
                         </div>
                         <div class="col align-self-center">
                         <br>
-                            <button style="background-color: #0844a4; color:white; width: 250px; height: 70px; font-size: 23px; font-weight:bold" onclick="OpenPopupCenter('inserePostagem.php?id=<?php echo $id; ?>', 'TEST!?', 800, 600);">
+                            <button style="background-color: #0844a4; color:white; width: 250px; height: 70px; font-size: 23px; font-weight:bold" onclick="OpenPopupCenter('cadastroPostagem.php?id=<?php echo $id; ?>', 'TEST!?', 800, 600);">
                                 Fazer Públicação
                             </button>
                         </div>
@@ -105,7 +109,7 @@ $id = $_GET["id"];
                         // set the resulting array to associative
                         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
                         foreach($stmt->fetchAll() as $k=>$v) { 
-                            if ($v["extensao"] == "mp4" or $v["extensao"] == "webm" or $v["extensao"] == "ogg") {
+                            
                                 ?>
                                 <br>
                                 <div class="card">
@@ -114,28 +118,28 @@ $id = $_GET["id"];
                                         <p class="card-text"><?php echo $v["descricao"] ?></p>
                                         <p class="card-text" style="text-align: end;"><small class="text-muted">Públicado em: <?php echo $v["data_inclusao"] ?></small></p>
                                     </div>
-                                    <video src="<?php echo $v["path_postagem"] ?>"> 
-                                        <object>
+                                    <?php
+                                    //Diferenciando arquivos publicados
+                                    if ($v["extensao"] == "mp4" or $v["extensao"] == "webm" or $v["extensao"] == "ogg") {
+                                        ?>
+                                        <video controls> 
+                                        <!--<object>
                                             <embed src="demo.mp4" type="application/x-shockwave-flash" 
                                             allowfullscreen="true" allowscriptaccess="always">  		
                                         </object>
+                                        -->
+                                        <source src="<?php echo $v["path_postagem"] ?>">
                                     </video>
-                                </div>
                                 <?php
-                            }
-                            else {
+                                    }
+                                    else {
+                                        ?>
+                                        <img class="card-img-bottom" src="<?php echo $v["path_paroquia"] ?>" alt="Imagem de capa do card">
+                                        <?php
+                                    }
                                 ?>
-                                <br>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title"> <img src="../UI/imagemPostagem/631a2ffd585f8.png" alt="imagemPerfil" class="rounded-circle" width= 60px height= 60px> <?php echo $v["paroquia"] ?></h5>
-                                        <p class="card-text"><?php echo $v["descricao"] ?></p>
-                                        <p class="card-text" style="text-align: end;"><small class="text-muted">Públicado em: <?php echo $v["data_inclusao"] ?></small></p>
-                                    </div>
-                                    <img class="card-img-bottom" src="<?php echo $v["path_postagem"] ?>" alt="imagem da postagem">
                                 </div>
-                                <?php
-                            }
+                    <?php
                         }
                         } catch(PDOException $e) {
                         echo "Error: " . $e->getMessage();

@@ -12,6 +12,10 @@ $cep = $_POST["cep"];
 $endereco = $_POST["endereco"];
 $numero = $_POST["numero"];
 $telefone = $_POST["telefone"];
+$deSemana = $_POST["de_semana"];
+$ateSemana = $_POST["ate_semana"];
+$deSabado = $_POST["de_sabado"];
+$ateSabado = $_POST["ate_sabado"];
 
 
 try {
@@ -34,8 +38,8 @@ try {
   
     $deuCerto = move_uploaded_file($arquivo["tmp_name"], $path);
     if($deuCerto) {
-        $conexao->query("INSERT INTO paroquia (paroquia, paroco, email, senha, cnpj, estado, cidade, cep, endereco, numero, telefone, id, arquivo, path) 
-        VALUES ('$paroquia', '$paroco', '$email', '$senha', '$cnpj', '$estado', '$cidade', '$cep', '$endereco', '$numero', '$telefone', NULL, '$nomeArquivo', '$path')") or die($conexao->error);
+        $conexao->query("INSERT INTO paroquia (paroquia, paroco, email, senha, cnpj, estado, cidade, cep, endereco, numero, telefone, id, arquivo, path, de_semana, ate_semana, de_sabado, ate_sabado) 
+        VALUES ('$paroquia', '$paroco', '$email', '$senha', '$cnpj', '$estado', '$cidade', '$cep', '$endereco', '$numero', '$telefone', NULL, '$nomeArquivo', '$path', '$deSemana', '$ateSemana', '$deSabado', '$ateSabado')") or die($conexao->error);
         echo "Registro efetuado com sucesso!";
     }
         

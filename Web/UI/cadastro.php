@@ -12,6 +12,10 @@ if(isset($_GET["id"])){
   $endereco = "";
   $numero = "";
   $telefone = "";
+  $deSemana = "";
+  $ateSemana = "";
+  $deSabado = "";
+  $ateSabado = "";
   $action = "";
 }
 
@@ -28,6 +32,10 @@ else{
   $endereco = "";
   $numero = "";
   $telefone = "";
+  $deSemana = "";
+  $ateSemana = "";
+  $deSabado = "";
+  $ateSabado = "";
   $action = "../BLL/inserirParoquia.php";
 }
 ?>
@@ -68,7 +76,7 @@ else{
                 <img src="./img/logoApp.png" alt="logoApp" display= block width= 200px height= 50px>
             </div>
         </header>
-
+    </div>
     <div class="container-fluid">
       <main class="row">
         <div class="col-12 col-sm-3">
@@ -133,6 +141,26 @@ else{
                 <div class="col-12 col-sm-8">
                     <label for="exampleFormControlInput1" class="form-label"><b>Telefone </b></label>
                     <input type="text" class="form-control" placeholder="Telefone" name="telefone" value="<?php echo $telefone ?>" required>
+                </div>
+                <br>
+                <div class="col-12 col-sm-8">
+                    <p><label for="exampleFormControlInput1" class="form-label"><b>Atendimento Semanal </b></label></p>
+                    <div class="col-12 col-sm-3">
+                    <label for="exampleFormControlInput1" class="form-label"><b>De </b></label>
+                    <input type="text" class="form-control" placeholder="00:00" name="de_semana" value="<?php echo $deSemana ?>" required>
+                    <label for="exampleFormControlInput1" class="form-label"><b>Até </b></label>
+                    <input type="text" class="form-control" placeholder="00:00" name="ate_semana" value="<?php echo $ateSemana ?>" required>
+                    </div>
+                </div>
+                <br>
+                <div class="col-12 col-sm-8">
+                    <p><label for="exampleFormControlInput1" class="form-label"><b>Atendimento de Sábado </b></label></p>
+                    <div class="col-12 col-sm-3">
+                    <label for="exampleFormControlInput1" class="form-label"><b>De </b></label>
+                    <input type="text" class="form-control" placeholder="00:00" name="de_sabado" value="<?php echo $deSabado ?>" required>
+                    <label for="exampleFormControlInput1" class="form-label"><b>Até </b></label>
+                    <input type="text" class="form-control" placeholder="00:00" name="ate_sabado" value="<?php echo $ateSabado ?>" required>
+                    </div>
                 </div>
                 <br>
                 <div class="col-12 col-sm-8">
