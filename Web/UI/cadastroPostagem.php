@@ -1,10 +1,18 @@
 <?php
 include("../DAL/conecta.php");
 
-$id = "";
-$descricao = "";
-$idParoquia = $_GET["id"];
-$action = "../BLL/inserirPostagem.php";
+if(isset($_GET["idpostagem"])){
+    $id = $_GET["idpostagem"];
+    $idParoquia = $_GET["id"];
+    $action = "../BLL/alterarPostagem.php";
+}
+else {
+    $id = "";
+    $descricao = "";
+    $idParoquia = $_GET["id"];
+    $action = "../BLL/inserirPostagem.php";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -44,33 +52,90 @@ $action = "../BLL/inserirPostagem.php";
       <main class="row">
         <div class="col-12 col-sm-3">
         </div>
-        <div class="col-12 col-sm-9">
-            <form name="cadastroPostagem" action="<?php echo $action ?>?id=<?php echo $id ?>"  method="post" enctype="multipart/form-data">
-            <!-- ID da paroquia -->
-            <div class="form-group oculto">
-              <label for=ID><b> ID Paróquia: </b></label> <br>
-              <input class="form-control" type="number" placeholder="ID" name="id_paroquia" value="<?php echo $idParoquia ?>">
+    <?php
+    //ALTERAR POSTAGEM
+        if(isset($_GET["idpostagem"])){
+        try {
+            $stmt = $conn->prepare("SELECT *
+                                    FROM postagem WHERE id = $id AND id_paroquia = $idParoquia"); 
+            $stmt->execute();
+
+            // set the resulting array to associative
+            $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+            foreach($stmt->fetchAll() as $k=>$v) { 
+    ?>
+                <div class="col-12 col-sm-9">
+                    <form name="alterarPostagem" action="<?php echo $action ?>?id=<?php echo $id ?>"  method="post" enctype="multipart/form-data">
+                    <!-- ID da paroquia -->
+                    <div class="form-group oculto">
+                    <label for=ID><b> ID Paróquia: </b></label> <br>
+                    <input class="form-control" type="number" placeholder="ID" name="id_paroquia" value="<?php echo $idParoquia ?>">
+                    </div>
+                    <!-- ID POSTAGEM -->
+                    <div class="form-group oculto">
+                    <label for=ID><b> ID Postagem: </b></label> <br>
+                    <input class="form-control" type="number" placeholder="ID Postagem" name="id_postagem" value="<?php echo $v['id'] ?>">
+                    </div>
+                    <div class="col-12 col-sm-8">
+                        <label for=ID><b> Descrição: </b></label> <br>
+                        <input class="form-control" type="text" placeholder="descricao" name="descricao" value="<?php echo $v['descricao'] ?>">
+                    </div>
+                        <br>
+                        <div class="col-12 col-sm-8">
+                            <label style="color: red;" for="exampleFormControlFile1"><b>Caso queira mudar o arquivo, sera necessário refazer a postagem!: </b></label>
+                        </div>
+                        <br>
+                        <div class="container-fluid">
+                            <header class="row">
+                            <div class="col-12 col-sm-1">
+                            </div>
+                            <div class="col-12 col-sm-9">
+                                <input type="button" onclick="window.close()" style="background-color: #0844a4; color:white; width: 150px; height: 60px; font-size: 23px; font-weight:bold" value="Fechar">
+                                <input type="submit" style="background-color: #0844a4; color:white; width: 150px; height: 60px; font-size: 23px; font-weight:bold" value="Alterar">
+                            </div>
+                        </div>    
+                    </form>
+                </div>
+    <?php
+        }
+        } catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        }
+        $conn = null;
+        } else {
+            //FAZER POSTAGEM
+        ?>
+            <div class="col-12 col-sm-9">
+                <form name="cadastroPostagem" action="<?php echo $action ?>?id=<?php echo $id ?>"  method="post" enctype="multipart/form-data">
+                <!-- ID da paroquia -->
+                <div class="form-group oculto">
+                <label for=ID><b> ID Paróquia: </b></label> <br>
+                <input class="form-control" type="number" placeholder="ID" name="id_paroquia" value="<?php echo $idParoquia ?>">
+                </div>
+                    <div class="col-12 col-sm-8">
+                        <textarea cols="50" rows="5" placeholder="Descrição" name="descricao" value="<?php echo $descricao ?>" required></textarea>
+                    </div>
+                    <br>
+                    <div class="col-12 col-sm-8">
+                        <label for="exampleFormControlFile1"><b>Insira um arquivo: </b></label>
+                        <input type="file" id="arquivo1" name="arquivo">
+                    </div>
+                    <br>
+                    <div class="container-fluid">
+                        <header class="row">
+                        <div class="col-12 col-sm-1">
+                        </div>
+                        <div class="col-12 col-sm-9">
+                            <input type="button" onclick="window.close()" style="background-color: #0844a4; color:white; width: 150px; height: 60px; font-size: 23px; font-weight:bold" value="Fechar">
+                            <input type="submit" style="background-color: #0844a4; color:white; width: 150px; height: 60px; font-size: 23px; font-weight:bold" value="Públicar">
+                        </div>
+                    </div>    
+                </form>
             </div>
-                <div class="col-12 col-sm-8">
-                    <textarea cols="50" rows="5" placeholder="Descrição" name="descricao" value="<?php echo $descricao ?>" required></textarea>
-                </div>
-                <br>
-                <div class="col-12 col-sm-8">
-                    <label for="exampleFormControlFile1"><b>Insira um arquivo: </b></label>
-                    <input type="file" id="arquivo1" name="arquivo">
-                </div>
-                <br>
-                <div class="container-fluid">
-                    <header class="row">
-                    <div class="col-12 col-sm-1">
-                    </div>
-                    <div class="col-12 col-sm-9">
-                        <input type="button" onclick="window.close()" style="background-color: #0844a4; color:white; width: 150px; height: 60px; font-size: 23px; font-weight:bold" value="Fechar">
-                        <input type="submit" style="background-color: #0844a4; color:white; width: 150px; height: 60px; font-size: 23px; font-weight:bold" value="Públicar">
-                    </div>
-                </div>    
-            </form>
-        </div>
+    <?php
+        }
+    ?>
+        
     <div class="col align-self-end">
     </div>
     </div>

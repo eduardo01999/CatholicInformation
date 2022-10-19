@@ -45,6 +45,14 @@ try {
             exit();
         }
     }
+    else {
+        //exibe mensagem que senha esta incorreta e redireciona para index
+
+        echo ("<SCRIPT LANGUAGE='JavaScript'>
+            window.alert('Senha incorreta!')
+            window.location.href='../UI/index.php';
+            </SCRIPT>");
+    }
     
     
 }   catch(PDOException $e) {

@@ -24,7 +24,7 @@ try {
         $deuCerto = move_uploaded_file($arquivo["tmp_name"], $path);
         if($deuCerto) {
             $conexao->query("INSERT INTO postagem (id, id_paroquia, descricao, path, data_inclusao, extensao) 
-            VALUES (NULL, '$idparoquia', '$descricao', '$path', NOW(), $extensao)") or die($conexao->error);
+            VALUES (NULL, '$idparoquia', '$descricao', '$path', NOW(), '$extensao')") or die($conexao->error);
             echo "Registro efetuado com sucesso!";
         }
             

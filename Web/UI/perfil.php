@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../DAL/conecta.php");
 
 $idParoquia = $_GET["id"];
@@ -20,7 +21,6 @@ if(isset($_GET["id_horario"])){
   }
   ?>
 
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -33,6 +33,7 @@ if(isset($_GET["id_horario"])){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>CatholicInformation!</title>
+
     <style> 
     .oculto {
         display: none;
@@ -98,6 +99,8 @@ if(isset($_GET["id_horario"])){
                         try {
                         $stmt = $conn->prepare("SELECT *
                                                 FROM paroquia where $idParoquia = id"); 
+//                       $stmt = $conn->prepare("SELECT *
+//                       FROM paroquia, horario_missa WHERE $idParoquia = paroquia.id AND $idParoquia = horario_missa.id_paroquia"); 
                         $stmt->execute();
 
                         // set the resulting array to associative
@@ -202,11 +205,11 @@ if(isset($_GET["id_horario"])){
                                         <br>
                                         <label for="exampleFormControlInput1" class="form-label"><b>Horários das Missas </b></label>
                                     </div>
-                                    <div class="col-12 col-sm-3">
+                                    <div class="col-12 col-sm-2">
                                     </div>
-                                    <div class="col-12 col-sm-3">
+                                    <div class="col-12 col-sm-2">
                                     </div>
-                                    <div class="col-12 col-sm-6">
+                                    <div class="col-12 col-sm-8">
                                         <!-- botão do modal -->
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="background-color: #0844a4; color:white; font-size: 23px; font-weight:bold">
                                             Adicionar Horário de Missa
@@ -236,9 +239,10 @@ if(isset($_GET["id_horario"])){
                                         </header>
                                     </div>
                                         
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
-                                        </button>
+                                    </button>
+
                                     </div>
                                     <form name="cadastroIgreja" action="<?php echo $action ?>?id=<?php echo $id ?>"  method="post" enctype="multipart/form-data">
                                         <div class="modal-body">
@@ -267,7 +271,50 @@ if(isset($_GET["id_horario"])){
                                     </div>
                                 </div>
                                 </div>
-                                <?php
+                    <?php
+                        }
+                        } catch(PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                        }
+                    ?>
+
+                    <?php
+                    
+                    //SELECT PARA EXIBIR HORARIOS DE MISSA
+
+                    include("../DAL/conecta.php");
+
+                    try {
+                    $stmt = $conn->prepare("SELECT *
+                                            FROM horario_missa WHERE $idParoquia = id_paroquia"); 
+                    $stmt->execute();
+
+                    // set the resulting array to associative
+                    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+                    foreach($stmt->fetchAll() as $k=>$v) { 
+                            ?>
+                                <div class="container-fluid">
+                                <header class="row">
+                                    <div class="col-12 col-sm-3">
+                                    </div>
+                                    <div class="col-12 col-sm-2">
+                                        <label for="exampleFormControlInput1" class="form-label" style="text-align: center;"><b>Dia</b></label>
+                                        <input type="text" class="form-control" placeholder="dia da missa" name="dia" disabled="" value="<?php echo ucfirst($v["dia"]) ?>">
+                                    </div>
+                                    <div class="col-12 col-sm-2">
+                                        <label for="exampleFormControlInput1" class="form-label" style="text-align: center;"><b>Às </b></label>
+                                        <input type="text" class="form-control" placeholder="horario da missa" name="horario" disabled="" value="<?php echo $v["horario"] ?>">
+                                    </div>
+                                    <div class="col-12 col-sm-2">
+                                        <label for="exampleFormControlInput1" class="form-label" style="text-align: center;"><b>Local </b></label>
+                                        <input type="text" class="form-control" placeholder="local da missa" name="local" disabled="" value="<?php echo ucfirst($v["local"]) ?>">
+                                    </div>
+                                    <div class="col-12 col-sm-3">
+                                        <br>
+                                        <br>
+                                        <?php echo "<a href='../BLL/excluirHorario.php?id=".$v["id_horario"]."'><i class='fas fa-trash-alt'></i> Excluir</a>"."<br>" ?>
+                                    </div>
+                    <?php
                         }
                         } catch(PDOException $e) {
                         echo "Error: " . $e->getMessage();
@@ -279,9 +326,11 @@ if(isset($_GET["id_horario"])){
                     <div class="col-12 col-sm-6">
                         <br>
                         <br>
-                        <button style="background-color: #0844a4; color:white; width: 250px; height: 70px; font-size: 23px; font-weight:bold" onclick="OpenPopupCenter('cadastroPostagem.php?id=<?php echo $id; ?>', 'TEST!?', 800, 600);">
+                        <a href='../UI/index.php'>
+                        <button style="background-color: #0844a4; color:white; width: 250px; height: 70px; font-size: 23px; font-weight:bold", 800, 600);>
                             Sair
                         </button>
+                        </a>
                     </div>
                     <div class="col-12 col-sm-2">
                     </div>

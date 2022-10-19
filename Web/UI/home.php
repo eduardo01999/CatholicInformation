@@ -40,11 +40,7 @@ $id = $_GET["id"];
                     </div>
                     <div class="col-12 col-sm-5">
                     </div>
-                    <!-- Icone para acessar menu usuario-->
-                    <div class="col-12 col-sm-3">
-                        <a href='index.php'><i class="fa-solid fa-circle-user"></i><br>Horários</a>
-                    </div>
-                    <!-- Icone para acessar menu usuario-->
+                    <!-- Icone para acessar menu usuario -->
                     <div class="col-12 col-sm-2">
                         <a href='perfil.php?id=<?php echo $id; ?>'><i class="fa-solid fa-circle-user"></i><br>Perfil</a>
                     </div>
@@ -114,8 +110,32 @@ $id = $_GET["id"];
                                 <br>
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title"> <img src="<?php echo $v["path_paroquia"] ?>" alt="imagemPerfil" class="rounded-circle" width= 60px height= 60px> <?php echo $v["paroquia"] ?></h5>
+                                        <!-- imagem da paroquia, e nome -->
+                                        <div class="container-fluid">
+                                        <header class="row">
+                                            <div class="col-12 col-sm-7">
+                                                <h5 class="card-title"> <img src="<?php echo $v["path_paroquia"] ?>" alt="imagemPerfil" class="rounded-circle" width= 60px height= 60px> <?php echo $v["paroquia"] ?></h5>
+                                            </div>
+                                            <div class="col-12 col-sm-4">
+                                            </div>
+                                            <div class="col-12 col-sm-1">
+                                            <!-- MENU PARA EDIÇÃO E EXCLUSÃO-->
+                                            <div class="btn-group">
+                                            <button type="button" style="background-color: #0844a4;" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <b>...</b>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="dropdown-item" type="button" onclick="OpenPopupCenter('cadastroPostagem.php?id=<?php echo $id; ?>&idpostagem=<?php echo $v['id_postagem']; ?>', 'TEST!?', 800, 600);">Editar</button>
+                                                    <a href='../BLL/excluirPostagem.php?id=<?php echo $v['id_postagem']; ?>'><button class="dropdown-item" type="button">Excluir</button> </a>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </header>
+                                        
+                                        <!-- descrição -->
                                         <p class="card-text"><?php echo $v["descricao"] ?></p>
+                                        <!-- data da publicação -->
                                         <p class="card-text" style="text-align: end;"><small class="text-muted">Públicado em: <?php echo $v["data_inclusao"] ?></small></p>
                                     </div>
                                     <?php
@@ -134,7 +154,7 @@ $id = $_GET["id"];
                                     }
                                     else {
                                         ?>
-                                        <img class="card-img-bottom" src="<?php echo $v["path_paroquia"] ?>" alt="Imagem de capa do card">
+                                        <img class="card-img-bottom" src="<?php echo $v["path_postagem"] ?>" alt="Imagem de capa do card">
                                         <?php
                                     }
                                 ?>
