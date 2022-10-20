@@ -1,8 +1,7 @@
 <?php
-session_start();
-ob_start();
-$id = $_GET["id"];
+include("../BLL/autentica.php");
 
+$id = $_SESSION['id'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,7 +41,7 @@ $id = $_GET["id"];
                     </div>
                     <!-- Icone para acessar menu usuario -->
                     <div class="col-12 col-sm-2">
-                        <a href='perfil.php?id=<?php echo $id; ?>'><i class="fa-solid fa-circle-user"></i><br>Perfil</a>
+                        <a href='perfil.php'><i class="fa-solid fa-circle-user"></i><br>Perfil</a>
                     </div>
                 </div>
             </div>
@@ -71,7 +70,7 @@ $id = $_GET["id"];
                         </div>
                         <div class="col align-self-center">
                         <br>
-                            <button style="background-color: #0844a4; color:white; width: 250px; height: 70px; font-size: 23px; font-weight:bold" onclick="OpenPopupCenter('cadastroPostagem.php?id=<?php echo $id; ?>', 'TEST!?', 800, 600);">
+                            <button style="background-color: #0844a4; color:white; width: 250px; height: 70px; font-size: 23px; font-weight:bold" onclick="OpenPopupCenter('cadastroPostagem.php', 'TEST!?', 800, 600);">
                                 Fazer Públicação
                             </button>
                         </div>
@@ -125,7 +124,7 @@ $id = $_GET["id"];
                                                 <b>...</b>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <button class="dropdown-item" type="button" onclick="OpenPopupCenter('cadastroPostagem.php?id=<?php echo $id; ?>&idpostagem=<?php echo $v['id_postagem']; ?>', 'TEST!?', 800, 600);">Editar</button>
+                                                    <button class="dropdown-item" type="button" onclick="OpenPopupCenter('cadastroPostagem.php?idpostagem=<?php echo $v['id_postagem']; ?>', 'TEST!?', 800, 600);">Editar</button>
                                                     <a href='../BLL/excluirPostagem.php?id=<?php echo $v['id_postagem']; ?>'><button class="dropdown-item" type="button">Excluir</button> </a>
                                                 </div>
                                                 </div>

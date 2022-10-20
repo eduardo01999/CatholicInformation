@@ -1,15 +1,18 @@
 <?php
 include("../DAL/conecta.php");
+include("../BLL/autentica.php");
+
+
 
 if(isset($_GET["idpostagem"])){
     $id = $_GET["idpostagem"];
-    $idParoquia = $_GET["id"];
+    $idParoquia = $_SESSION['id'];
     $action = "../BLL/alterarPostagem.php";
 }
 else {
     $id = "";
     $descricao = "";
-    $idParoquia = $_GET["id"];
+    $idParoquia = $_SESSION['id'];
     $action = "../BLL/inserirPostagem.php";
 }
 

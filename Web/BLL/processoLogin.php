@@ -34,10 +34,9 @@ try {
             foreach($stmt->fetchAll() as $k=>$v) { 
                 $id = $v["id"];
             }
-            $SESSION['email']=$email;
-            $SESSION['id']=$id;
+            $_SESSION['id']=$id;
 
-            header("Location: ../UI/home.php?id=$id");
+            header("Location: ../UI/home.php");
             exit();
         }
         else {

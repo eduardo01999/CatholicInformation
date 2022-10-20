@@ -1,8 +1,9 @@
 <?php
 session_start();
+include("../BLL/autentica.php");
 include("../DAL/conecta.php");
 
-$idParoquia = $_GET["id"];
+$idParoquia = $_SESSION['id'];
 
 if(isset($_GET["id_horario"])){
     $id = "";
@@ -50,28 +51,6 @@ if(isset($_GET["id_horario"])){
 
   </head>
   <body>
-    <header class="container">
-    <div class="row">
-        <div class="col align-self-start">
-        </div>
-        <div class="col align-self-center">
-        </div>
-        <div class="col align-self-end">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-sm-2">
-                    </div>
-                    <div class="col-12 col-sm-8">
-                    </div>
-                    <!-- Icone para acessar menu usuario-->
-                    <div class="col-12 col-sm-2">
-                        <a href='home.php?id=<?php echo $idParoquia; ?>'><i class="fa-solid fa-circle-user"></i><br>Home</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </header>
 
   <!-- Logo -->
   <div class="container">
@@ -79,7 +58,7 @@ if(isset($_GET["id_horario"])){
         <div class="col align-self-start">
         </div>
         <div class="col align-self-center">
-            <img src="./img/logoApp.png" alt="logoApp" display= block width= 550px height= 100px>
+            <a href='home.php'><i class="fa-solid fa-circle-user"></i><img src="./img/logoApp.png" alt="logoApp" display= block width= 550px height= 100px></a>
         </div>
         <div class="col align-self-end">
         </div>
@@ -136,10 +115,10 @@ if(isset($_GET["id_horario"])){
                                         <input type="text" class="form-control" placeholder="Nome da Paróquia" name="paroquia" disabled="" value="<?php echo $v["paroquia"] ?>">
                                         <br>
                                         <label for="exampleFormControlInput1" class="form-label"><b>Telefone </b></label>
-                                        <input type="text" class="form-control" placeholder="Nome da Paróquia" name="telefone" disabled="" value="<?php echo $v["telefone"] ?>">
+                                        <input type="text" class="form-control" placeholder="Telefone" name="telefone" disabled="" value="<?php echo $v["telefone"] ?>">
                                         <br>
-                                        <label for="exampleFormControlInput1" class="form-label"><b>Pároco </b></label>
-                                        <input type="text" class="form-control" placeholder="Nome da Paróquia" name="paroco" disabled="" value="<?php echo $v["paroco"] ?>">
+                                        <label for="exampleFormControlInput1" class="form-label"><b>Padre </b></label>
+                                        <input type="text" class="form-control" placeholder="Nome do Padre" name="paroco" disabled="" value="<?php echo $v["paroco"] ?>">
                                         <br>
                                     </div>
                                     <div class="col-12 col-sm-2">
@@ -161,13 +140,13 @@ if(isset($_GET["id_horario"])){
                                     <div class="col-12 col-sm-4">
                                     </div>
                                     <!-- horarios semanal -->
-                                    <div class="col-12 col-sm-3">
+                                    <div class="col-12 col-sm-1">
                                     </div>
-                                    <div class="col-12 col-sm-3">
+                                    <div class="col-12 col-sm-4">
                                         <label for="exampleFormControlInput1" class="form-label" style="text-align: center;"><b>Das</b></label>
                                         <input type="text" class="form-control" placeholder="horario semanal de" name="de_semana" disabled="" value="<?php echo $v["de_semana"] ?>">
                                     </div>
-                                    <div class="col-12 col-sm-3">
+                                    <div class="col-12 col-sm-4">
                                         <label for="exampleFormControlInput1" class="form-label" style="text-align: center;"><b>Às </b></label>
                                         <input type="text" class="form-control" placeholder="horario semanal ate" name="ate_semana" disabled="" value="<?php echo $v["ate_semana"] ?>">
                                     </div>
@@ -184,13 +163,13 @@ if(isset($_GET["id_horario"])){
                                     <div class="col-12 col-sm-4">
                                     </div>
                                     <!-- horarios sabado -->
-                                    <div class="col-12 col-sm-3">
+                                    <div class="col-12 col-sm-1">
                                     </div>
-                                    <div class="col-12 col-sm-3">
+                                    <div class="col-12 col-sm-4">
                                         <label for="exampleFormControlInput1" class="form-label" style="text-align: center;"><b>Das</b></label>
                                         <input type="text" class="form-control" placeholder="horario sabado de" name="de_sabado" disabled="" value="<?php echo $v["de_sabado"] ?>">
                                     </div>
-                                    <div class="col-12 col-sm-3">
+                                    <div class="col-12 col-sm-4">
                                         <label for="exampleFormControlInput1" class="form-label" style="text-align: center;"><b>Às </b></label>
                                         <input type="text" class="form-control" placeholder="horario sabado ate" name="ate_sabado" disabled="" value="<?php echo $v["ate_sabado"] ?>">
                                     </div>
@@ -302,7 +281,7 @@ if(isset($_GET["id_horario"])){
                                         <input type="text" class="form-control" placeholder="dia da missa" name="dia" disabled="" value="<?php echo ucfirst($v["dia"]) ?>">
                                     </div>
                                     <div class="col-12 col-sm-2">
-                                        <label for="exampleFormControlInput1" class="form-label" style="text-align: center;"><b>Às </b></label>
+                                        <label for="exampleFormControlInput1" class="form-label" style="text-align: center;"><b>Horário </b></label>
                                         <input type="text" class="form-control" placeholder="horario da missa" name="horario" disabled="" value="<?php echo $v["horario"] ?>">
                                     </div>
                                     <div class="col-12 col-sm-2">
@@ -326,7 +305,7 @@ if(isset($_GET["id_horario"])){
                     <div class="col-12 col-sm-6">
                         <br>
                         <br>
-                        <a href='../UI/index.php'>
+                        <a href='../BLL/sair.php'>
                         <button style="background-color: #0844a4; color:white; width: 250px; height: 70px; font-size: 23px; font-weight:bold", 800, 600);>
                             Sair
                         </button>
