@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">CatholicInformation</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="cadastrar_usuario">cadastrar usuário</string>
+    <string name="entrar">Entrar</string>
+    <string name="senha">Senha</string>
+    <string name="confirmaSenha">Confirmar Senha</string>
+    <string name="email">E-mail</string>
+    <string name="nome">Nome</string>
+    <string name="telefone">Telefone</string>
+    <string name="estado">Estado</string>
+    <string name="cidade">Cidade</string>
+    <string name="paroquia">Paróquia</string>
+    <string name="cadastrar">Cadastrar</string>
+</resources>
