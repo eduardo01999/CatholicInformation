@@ -24,6 +24,9 @@
         <activity
             android:name=".ui.activity.ListaPostagensActivity" />
 
+        <activity
+            android:name=".ui.activity.ExibePostagemSelecionadaActivity" />
+
         <activity android:name=".ui.activity.LoginActivity"
             android:exported="true">
             <intent-filter>

@@ -12,4 +12,8 @@ class PostagemRepository (private val webClient: PostagemWebClient) {
     suspend fun buscaTodas() {
         webClient.buscaPorId()
     }
+
+    suspend fun buscaPostagemSelecionada(): List<Postagem>? {
+        return webClient.buscaPostagemSelecionada()
+    }
 }

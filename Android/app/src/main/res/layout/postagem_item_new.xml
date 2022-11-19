@@ -40,7 +40,7 @@
 
 
             <TextView
-                android:id="@+id/postagem_nome_paroquia"
+                android:id="@+id/postagemItemNomeParoquia"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:text="@tools:sample/lorem/random"                 android:fontFamily="@font/montserrat_bold"
@@ -62,9 +62,9 @@
                 android:fontFamily="@font/montserrat"
                 android:maxLines="1"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@id/postagem_nome_paroquia"
-                app:layout_constraintStart_toStartOf="@id/postagem_nome_paroquia"
-                app:layout_constraintTop_toBottomOf="@id/postagem_nome_paroquia"
+                app:layout_constraintEnd_toEndOf="@id/postagemItemNomeParoquia"
+                app:layout_constraintStart_toStartOf="@id/postagemItemNomeParoquia"
+                app:layout_constraintTop_toBottomOf="@id/postagemItemNomeParoquia"
                 tools:text="@tools:sample/lorem/random" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

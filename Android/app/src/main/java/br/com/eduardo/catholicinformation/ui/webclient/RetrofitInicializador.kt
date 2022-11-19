@@ -8,7 +8,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 class RetrofitInicializador {
 
     private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl("http://10.0.0.102/apiCatholicInformation/public_html/api/")
+        .baseUrl("http://" + ipApi + "/apiCatholicInformation/public_html/api/")
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 

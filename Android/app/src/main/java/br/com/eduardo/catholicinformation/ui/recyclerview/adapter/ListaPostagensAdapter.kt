@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.eduardo.catholicinformation.databinding.PostagemItemBinding
 import br.com.eduardo.catholicinformation.databinding.PostagemItemNewBinding
 import br.com.eduardo.catholicinformation.model.Postagem
+import br.com.eduardo.catholicinformation.ui.webclient.ipApi
 import com.bumptech.glide.Glide
 
 class ListaPostagensAdapter(
     private val context: Context,
+    var quandoClicaNoItem: (postagem : Postagem) -> Unit = {},
     postagens: List<Postagem> = emptyList()
 ) : RecyclerView.Adapter<ListaPostagensAdapter.ViewHolder>() {
 
@@ -27,15 +29,24 @@ class ListaPostagensAdapter(
 
 
     class ViewHolder(
-        private val binding: PostagemItemNewBinding
+        private val binding: PostagemItemNewBinding,
+        private val quandoClicaNoItem: (postagem: Postagem) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private lateinit var postagem: Postagem
 
+        init {
+            itemView.setOnClickListener {
+                if (::postagem.isInitialized) {
+                    quandoClicaNoItem(postagem)
+                }
+            }
+        }
+
         fun vincula(postagem: Postagem) {
             this.postagem = postagem
             val imagemPostagem = binding.imageParoquia
-            val url = "http://10.0.0.102/CatholicInformation/Web" + postagem.path_postagem.replace("..","")
+            val url = "http://"+ ipApi +"/CatholicInformation/Web" + postagem.path_postagem.replace("..","")
 
             Glide
                 .with(itemView.context)
@@ -57,7 +68,8 @@ class ListaPostagensAdapter(
             PostagemItemNewBinding
                 .inflate(
                     LayoutInflater.from(context)
-                )
+                ),
+            quandoClicaNoItem
         )
 
     override fun onBindViewHolder(

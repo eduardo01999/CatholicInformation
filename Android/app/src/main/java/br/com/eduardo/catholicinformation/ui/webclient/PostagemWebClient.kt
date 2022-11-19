@@ -39,4 +39,18 @@ class PostagemWebClient {
             null
         }
     }
+
+    suspend fun buscaPostagemSelecionada(): List<Postagem>? {
+        return try {
+            val postagemResposta = postagemService
+                .buscaPostagemSelecionada(1)
+            postagemResposta.map { postagemResposta ->
+                Log.i(TAG,"teste ${postagemResposta.descricao}")
+                postagemResposta.postagem
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "buscaTodasPostagens: ", e)
+            null
+        }
+    }
 }
