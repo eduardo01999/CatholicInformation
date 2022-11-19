@@ -29,6 +29,8 @@ if(isset($_GET["id_horario"])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
+
     <script src="https://kit.fontawesome.com/61f3f3e294.js" crossorigin="anonymous"></script>
 
     <!-- Bootstrap CSS -->
@@ -36,6 +38,10 @@ if(isset($_GET["id_horario"])){
     <title>CatholicInformation!</title>
 
     <style> 
+    body {
+            background-image: url("img/fundo.jpg");
+        }
+        
     .oculto {
         display: none;
     }
@@ -51,6 +57,28 @@ if(isset($_GET["id_horario"])){
 
   </head>
   <body>
+  <header class="container">
+    <div class="row">
+        <div class="col align-self-start">
+        </div>
+        <div class="col align-self-center">
+        </div>
+        <div class="col align-self-end">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-2">
+                    </div>
+                    <div class="col-12 col-sm-5">
+                    </div>
+                    <!-- Icone para sair -->
+                    <div class="col-12 col-sm-2">
+                        <a href='../BLL/sair.php'><br><i class="fa-solid fa-arrow-right-from-bracket" style="font-size: 25px;"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>
 
   <!-- Logo -->
   <div class="container">
@@ -58,7 +86,7 @@ if(isset($_GET["id_horario"])){
         <div class="col align-self-start">
         </div>
         <div class="col align-self-center">
-            <a href='home.php'><i class="fa-solid fa-circle-user"></i><img src="./img/logoApp.png" alt="logoApp" display= block width= 550px height= 100px></a>
+            <a href='home.php'><img src="./img/LogoAppSemFundo.png" alt="logoApp" display= block width= 550px height= 100px></a>
         </div>
         <div class="col align-self-end">
         </div>
@@ -213,7 +241,7 @@ if(isset($_GET["id_horario"])){
                                                 <h5 class="modal-title" id="exampleModalLabel">Cadastrar horário missa</h5>
                                             </div>
                                             <div class="col-12 col-sm-6">
-                                                <img src="./img/logoApp.png" alt="logoApp" display= block width= 200px height= 50px>
+                                                <img src="./img/logoAppSemFundo.png" alt="logoApp" display= block width= 200px height= 50px>
                                             </div>
                                         </header>
                                     </div>
@@ -231,7 +259,7 @@ if(isset($_GET["id_horario"])){
                                         </div>
                                         <div class="col-12 col-sm-8">
                                             <label for="exampleFormControlInput1" class="form-label"><b>Horário </b></label>
-                                            <input type="text" class="form-control" placeholder="Horário da missa ex: 9:00" name="horario" value="<?php echo $horario ?>" required>
+                                            <input type="time" name="horario" required>
                                         </div>
                                         <div class="col-12 col-sm-8">
                                             <label for="exampleFormControlInput1" class="form-label"><b>Dia </b></label>
@@ -300,19 +328,6 @@ if(isset($_GET["id_horario"])){
                         }
                         $conn = null;
                     ?>
-                    <div class="col-12 col-sm-4">
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <br>
-                        <br>
-                        <a href='../BLL/sair.php'>
-                        <button style="background-color: #0844a4; color:white; width: 250px; height: 70px; font-size: 23px; font-weight:bold", 800, 600);>
-                            Sair
-                        </button>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-2">
-                    </div>
                 </div>
             </div> 
         </main>

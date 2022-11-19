@@ -13,8 +13,12 @@ try {
   
     $stmt = $conn->prepare($sql); 
     $stmt->execute();
-  
-    echo "Novo Registro Inserido com sucesso!<br>";
+    ?>
+      <script>
+      alert("Novo Horário Inserido com sucesso!!");
+      history.go(-1);
+      </script>
+    <?php
   } catch(PDOException $e) {
     echo $sql . "<br>" . $e->getMessage();
   }

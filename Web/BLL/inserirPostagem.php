@@ -26,6 +26,12 @@ try {
             $conexao->query("INSERT INTO postagem (id, id_paroquia, descricao, path, data_inclusao, extensao) 
             VALUES (NULL, '$idparoquia', '$descricao', '$path', NOW(), '$extensao')") or die($conexao->error);
             echo "Registro efetuado com sucesso!";
+        ?>
+            <script>
+            alert("Novo Postagem Inserida com sucesso!!");
+            history.go(-1);
+            </script>
+        <?php
         }
             
         else

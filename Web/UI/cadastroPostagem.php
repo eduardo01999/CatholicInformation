@@ -30,6 +30,10 @@ else {
 
     <title>Fazer Publicação</title>
     <style> 
+    body {
+            background-image: url("img/fundo.jpg");
+        }
+
     .oculto {
         display: none;
     }
@@ -43,7 +47,7 @@ else {
                     <div class="col align-self-start">
                     </div>
                     <div class="col align-self-center">
-                        <img src="./img/logoApp.png" alt="logoApp" display= block width= 550px height= 100px>
+                        <img src="./img/LogoAppSemFundo.png" alt="logoApp" display= block width= 550px height= 100px>
                     </div>
                     <div class="col align-self-end">
                     </div>
@@ -85,9 +89,9 @@ else {
                     </div>
                         <br>
                         <div class="col-12 col-sm-8">
-                            <label style="color: red;" for="exampleFormControlFile1"><b>Caso queira mudar o arquivo, sera necessário refazer a postagem!: </b></label>
+                            <label for="exampleFormControlFile1"><b>Insira um arquivo para alterar: </b></label>
+                            <input type="file" id="arquivo" name="arquivo">
                         </div>
-                        <br>
                         <div class="container-fluid">
                             <header class="row">
                             <div class="col-12 col-sm-1">
@@ -106,7 +110,7 @@ else {
         }
         $conn = null;
         } else {
-            //FAZER POSTAGEM
+            //INSERIR POSTAGEM
         ?>
             <div class="col-12 col-sm-9">
                 <form name="cadastroPostagem" action="<?php echo $action ?>?id=<?php echo $id ?>"  method="post" enctype="multipart/form-data">

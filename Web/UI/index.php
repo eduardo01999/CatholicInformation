@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <title>CatholicInformation!</title>
+    <style>
+        body {
+            background-image: url("img/fundo.jpg");
+        }
+    </style>
   </head>
   <body>
 
@@ -18,7 +23,7 @@
         <div class="col align-self-start">
         </div>
         <div class="col align-self-center">
-            <img src="./img/logoApp.png" alt="logoApp" display= block width= 550px height= 100px>
+            <img src="./img/LogoAppSemFundo.png" alt="logoApp" display= block width= 550px height= 100px style="margin-bottom: 100px; margin-top: 50px;">
         </div>
         <div class="col align-self-end">
         </div>

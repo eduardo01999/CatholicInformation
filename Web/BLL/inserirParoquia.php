@@ -40,11 +40,21 @@ try {
     if($deuCerto) {
         $conexao->query("INSERT INTO paroquia (paroquia, paroco, email, senha, cnpj, estado, cidade, cep, endereco, numero, telefone, id, arquivo, path, de_semana, ate_semana, de_sabado, ate_sabado) 
         VALUES ('$paroquia', '$paroco', '$email', '$senha', '$cnpj', '$estado', '$cidade', '$cep', '$endereco', '$numero', '$telefone', NULL, '$nomeArquivo', '$path', '$deSemana', '$ateSemana', '$deSabado', '$ateSabado')") or die($conexao->error);
-        echo "Registro efetuado com sucesso!";
+        ?>
+        <script>
+        alert("Registro efetuado com sucesso!");
+        window.location.href = "../UI/index.php";
+        </script>
+        <?php
     }
         
     else
-        echo "Falha ao efetuar cadastro!";
+        ?>
+        <script>
+        alert("Falha ao efetuar cadastro!");
+        history.go(-1);
+        </script>
+        <?php
     
   }
 } catch(PDOException $e) {

@@ -62,18 +62,24 @@ else{
         }
       }
     </script>
+
+    <style>
+        body {
+            background-image: url("img/fundo.jpg");
+        }
+    </style>
   </head>
 <body>
     <div class="container-fluid">
         <header class="row">
             <div class="col-12 col-sm-2">
-                <img src="./img/logoApp.png" alt="logoApp" display= block width= 200px height= 50px>
+                <img src="./img/LogoAppSemFundo.png" alt="logoApp" display= block width= 200px height= 50px>
             </div>
             <div class="col-12 col-sm-8">
                 <h1 class="text-center">INSIRA SEUS <br> DADOS</h1>
             </div>
             <div class="col-12 col-sm-2">
-                <img src="./img/logoApp.png" alt="logoApp" display= block width= 200px height= 50px>
+                <img src="./img/LogoAppSemFundo.png" alt="logoApp" display= block width= 200px height= 50px>
             </div>
         </header>
     </div>
@@ -146,20 +152,20 @@ else{
                 <div class="col-12 col-sm-8">
                     <p><label for="exampleFormControlInput1" class="form-label"><b>Atendimento Semanal </b></label></p>
                     <div class="col-12 col-sm-3">
-                    <label for="exampleFormControlInput1" class="form-label"><b>De </b></label>
-                    <input type="text" class="form-control" placeholder="00:00" name="de_semana" value="<?php echo $deSemana ?>" required>
+                    <label for="exampleFormControlInput1" class="form-label"><b>Das </b></label>
+                    <input type="time" class="form-control" name="de_semana" required>
                     <label for="exampleFormControlInput1" class="form-label"><b>Até </b></label>
-                    <input type="text" class="form-control" placeholder="00:00" name="ate_semana" value="<?php echo $ateSemana ?>" required>
+                    <input type="time" class="form-control" name="ate_semana" required>
                     </div>
                 </div>
                 <br>
                 <div class="col-12 col-sm-8">
                     <p><label for="exampleFormControlInput1" class="form-label"><b>Atendimento de Sábado </b></label></p>
                     <div class="col-12 col-sm-3">
-                    <label for="exampleFormControlInput1" class="form-label"><b>De </b></label>
-                    <input type="text" class="form-control" placeholder="00:00" name="de_sabado" value="<?php echo $deSabado ?>" required>
+                    <label for="exampleFormControlInput1" class="form-label"><b>Das </b></label>
+                    <input type="time" class="form-control" name="de_sabado" required>
                     <label for="exampleFormControlInput1" class="form-label"><b>Até </b></label>
-                    <input type="text" class="form-control" placeholder="00:00" name="ate_sabado" value="<?php echo $ateSabado ?>" required>
+                    <input type="time" class="form-control" name="ate_sabado" required>
                     </div>
                 </div>
                 <br>

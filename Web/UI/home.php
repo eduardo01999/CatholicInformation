@@ -10,6 +10,8 @@ $id = $_SESSION['id'];
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
+
     <script src="https://kit.fontawesome.com/61f3f3e294.js" crossorigin="anonymous"></script>
 
     <!-- Bootstrap CSS -->
@@ -24,6 +26,12 @@ $id = $_SESSION['id'];
         } 
     </script>
 
+    <style>
+        body {
+            background-image: url("img/fundo.jpg");
+        }
+    </style>
+
   </head>
   <body>
     <header class="container">
@@ -37,11 +45,15 @@ $id = $_SESSION['id'];
                 <div class="row">
                     <div class="col-12 col-sm-2">
                     </div>
-                    <div class="col-12 col-sm-5">
+                    <div class="col-12 col-sm-3">
                     </div>
                     <!-- Icone para acessar menu usuario -->
                     <div class="col-12 col-sm-2">
-                        <a href='perfil.php'><i class="fa-solid fa-circle-user"></i><br>Perfil</a>
+                        <a href='perfil.php'><br><i class="fa-solid fa-circle-user" style="font-size: 25px;"></i></a>
+                    </div>
+                    <!-- Icone para sair -->
+                    <div class="col-12 col-sm-2">
+                        <a href='../BLL/sair.php'><br><i class="fa-solid fa-arrow-right-from-bracket" style="font-size: 25px;"></i></a>
                     </div>
                 </div>
             </div>
@@ -55,7 +67,7 @@ $id = $_SESSION['id'];
         <div class="col align-self-start">
         </div>
         <div class="col align-self-center">
-            <img src="./img/logoApp.png" alt="logoApp" display= block width= 550px height= 100px>
+            <img src="./img/LogoAppSemFundo.png" alt="logoApp" display= block width= 550px height= 100px>
         </div>
         <div class="col align-self-end">
         </div>
@@ -66,23 +78,19 @@ $id = $_SESSION['id'];
         <main class="row align-items-center">
             <div class="container">
                     <div class="row">
-                        <div class="col align-self-start">
+                        <div class="col-12 col-sm-2">
                         </div>
-                        <div class="col align-self-center">
+                        <div class="col-12 col-sm-1">
                         <br>
-                            <button style="background-color: #0844a4; color:white; width: 250px; height: 70px; font-size: 23px; font-weight:bold" onclick="OpenPopupCenter('cadastroPostagem.php', 'TEST!?', 800, 600);">
-                                Fazer Públicação
+                            <button style="background-color: #0844a4; color:white; width: 35px; height: 40px; font-size: 23px; font-weight:bold" onclick="OpenPopupCenter('cadastroPostagem.php', 'TEST!?', 800, 600);">
+                                +
                             </button>
                         </div>
-                        <div class="col align-self-end">
-                        </div>
+                        
                     </div>
             </div>
         </main>
     </div>
-    <br>
-    <br>
-    <br>
     <!-- Inicio de postagens realizadas -->
     <div class="container">
         <main class="row align-items-center">
@@ -90,7 +98,7 @@ $id = $_SESSION['id'];
             <div class="row">
                 <div class="col-12 col-sm-2">
                 </div>
-                <div class="col-12 col-sm-9">
+                <div class="col-12 col-sm-8">
                     <!-- inicio do card para postagem -->
                     <?php
                         include("../DAL/conecta.php");
