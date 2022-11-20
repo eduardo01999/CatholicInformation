@@ -33,7 +33,8 @@ class ListaPostagensActivity : AppCompatActivity() {
         configuraRecyclerView()
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                buscaPostagens()
+                val id = intent.getIntExtra("ID", 8)
+                buscaPostagens(id)
             }
         }
     }
@@ -48,7 +49,7 @@ class ListaPostagensActivity : AppCompatActivity() {
 
     }
 
-    private suspend fun buscaPostagens() {
-        repository.buscaPorId()?.let { adapter.atualiza(it) }
+    private suspend fun buscaPostagens(id: Int) {
+        repository.buscaPorId(id)?.let { adapter.atualiza(it) }
     }
 }

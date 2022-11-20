@@ -26,10 +26,10 @@ class PostagemWebClient {
         }
     }
 
-    suspend fun buscaPorId(): List<Postagem>? {
+    suspend fun buscaPorId(id: Int): List<Postagem>? {
         return try {
             val postagemResposta = postagemService
-                .buscaPorId(8)
+                .buscaPorId(id)
             postagemResposta.map { postagemResposta ->
                 Log.i(TAG,"teste ${postagemResposta.descricao}")
                 postagemResposta.postagem

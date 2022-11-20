@@ -5,12 +5,12 @@ import br.com.eduardo.catholicinformation.ui.webclient.PostagemWebClient
 
 class PostagemRepository (private val webClient: PostagemWebClient) {
 
-    suspend fun buscaPorId(): List<Postagem>? {
-        return webClient.buscaPorId()
+    suspend fun buscaPorId(id: Int): List<Postagem>? {
+        return webClient.buscaPorId(id)
     }
 
-    suspend fun buscaTodas() {
-        webClient.buscaPorId()
+    suspend fun buscaTodas(id: Int) {
+        webClient.buscaPorId(id)
     }
 
     suspend fun buscaPostagemSelecionada(): List<Postagem>? {

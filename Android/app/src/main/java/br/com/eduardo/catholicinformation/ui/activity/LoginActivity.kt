@@ -1,12 +1,14 @@
 package br.com.eduardo.catholicinformation.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import br.com.eduardo.catholicinformation.databinding.ActivityLoginBinding
-import kotlinx.coroutines.launch
-import androidx.appcompat.app.AppCompatActivity
 import br.com.eduardo.catholicinformation.extensions.vaiPara
 import br.com.eduardo.catholicinformation.ui.webclient.UsuarioWebClient
+import kotlinx.coroutines.launch
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -47,7 +49,11 @@ class LoginActivity : AppCompatActivity() {
                     usuario?.forEach { user ->
                         if (user.email == login) {
                             if (user.senha == senha) {
-                                vaiPara(ListaPostagensActivity::class.java)
+
+                                val it = Intent(applicationContext, ListaPostagensActivity::class.java)
+                                it.putExtra("ID", user.id_paroquia)
+                                startActivity(it)
+//                                vaiPara(ListaPostagensActivity::class.java)
                                 finish()
                             }
                         }
