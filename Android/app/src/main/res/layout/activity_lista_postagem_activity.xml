@@ -20,7 +20,6 @@
 <!--        app:titleTextColor="@color/white"-->
 <!--        app:title="@string/app_name" />-->
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_lista_postagens_recyclerView"
         android:layout_width="0dp"
@@ -31,6 +30,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/postagem_item"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

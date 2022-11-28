@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import br.com.eduardo.catholicinformation.databinding.ActivityExibePostagemBinding
+import br.com.eduardo.catholicinformation.model.Postagem
 import br.com.eduardo.catholicinformation.ui.webclient.RetrofitInicializador
 import br.com.eduardo.catholicinformation.ui.webclient.ipApi
 import br.com.eduardo.catholicinformation.ui.webclient.services.PostagemService
@@ -20,6 +21,7 @@ class ExibePostagemSelecionadaActivity : AppCompatActivity() {
         ActivityExibePostagemBinding.inflate(layoutInflater)
     }
 
+    private lateinit var postagem: Postagem
 
     private val postagemService: PostagemService =
         RetrofitInicializador().postagemService
@@ -38,6 +40,7 @@ class ExibePostagemSelecionadaActivity : AppCompatActivity() {
     }
 
     private suspend fun tentaBuscarPostagem() {
+        Log.i("teste", "tentaBuscarPostagem: "+ postagemId)
         postagemId?.let { id ->
             //AQUI ESTA COM ERRO NÃO SEI COMO FAZER ENTRAR NO FOREACH
             // (ACHO QUE DEVIA USAR OUTRA COISA, MAS NÃO SEI O QUE)
@@ -50,12 +53,12 @@ class ExibePostagemSelecionadaActivity : AppCompatActivity() {
                     val urlPostagem = "http://"+ ipApi + "/CatholicInformation/Web" + postagemEncontrada.path_postagem.replace("..","")
                     val urlParoquia = "http://"+ ipApi + "/CatholicInformation/Web" + postagemEncontrada.path_paroquia.replace("..","")
 
-//                    Glide
-//                        .with(itemView.context)
-//                        .load(urlPostagem)
-//                        .centerCrop()
-//                        .into(imagemPostagem)
-//
+                    Glide
+                        .with(applicationContext)
+                        .load(urlPostagem)
+                        .centerCrop()
+                        .into(imagemPostagem)
+
 //                    Glide
 //                        .with(itemView.context)
 //                        .load(urlParoquia)

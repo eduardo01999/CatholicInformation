@@ -1,5 +1,6 @@
 package br.com.eduardo.catholicinformation.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
@@ -42,9 +43,14 @@ class ListaPostagensActivity : AppCompatActivity() {
     private fun configuraRecyclerView() {
         binding.activityListaPostagensRecyclerView.adapter = adapter
         adapter.quandoClicaNoItem = { postagem ->
-            vaiPara(ExibePostagemSelecionadaActivity::class.java) {
-                putExtra(POSTAGEM_ID, postagem.id)
-            }
+
+            val it = Intent(applicationContext, ExibePostagemSelecionadaActivity::class.java)
+            it.putExtra("ID", postagem.id)
+            startActivity(it)
+
+//            vaiPara(ExibePostagemSelecionadaActivity::class.java) {
+//                putExtra(POSTAGEM_ID, postagem.id)
+//            }
         }
 
     }

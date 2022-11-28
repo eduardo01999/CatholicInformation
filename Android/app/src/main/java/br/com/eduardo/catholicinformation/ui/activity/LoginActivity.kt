@@ -2,6 +2,7 @@ package br.com.eduardo.catholicinformation.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import br.com.eduardo.catholicinformation.databinding.ActivityLoginBinding
@@ -59,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                     //informar erro no login
-
+//                    Toast.makeText(applicationContext, "login/senha incorreto", Toast.LENGTH_SHORT).show()
                 }
             }
 
