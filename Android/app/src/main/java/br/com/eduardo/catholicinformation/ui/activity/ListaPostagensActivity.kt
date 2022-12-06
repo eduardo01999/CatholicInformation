@@ -42,8 +42,9 @@ class ListaPostagensActivity : AppCompatActivity() {
     private fun configuraRecyclerView() {
         binding.activityListaPostagensRecyclerView.adapter = adapter
         adapter.quandoClicaNoItem = { postagem ->
+
             vaiPara(ExibePostagemSelecionadaActivity::class.java) {
-                putExtra(POSTAGEM_ID, postagem.id)
+                putExtra(POSTAGEM_ID, postagem)
             }
         }
 

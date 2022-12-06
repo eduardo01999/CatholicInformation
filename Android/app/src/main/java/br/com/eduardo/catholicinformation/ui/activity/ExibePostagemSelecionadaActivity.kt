@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import br.com.eduardo.catholicinformation.databinding.ActivityExibePostagemBinding
+import br.com.eduardo.catholicinformation.model.Postagem
 import br.com.eduardo.catholicinformation.ui.webclient.RetrofitInicializador
 import br.com.eduardo.catholicinformation.ui.webclient.ipApi
 import br.com.eduardo.catholicinformation.ui.webclient.services.PostagemService
@@ -30,10 +31,14 @@ class ExibePostagemSelecionadaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+//        lifecycleScope.launch {
+//            launch {
+//                tentaBuscarPostagem()
+//            }
+//        }
+
         lifecycleScope.launch {
-            launch {
-                tentaBuscarPostagem()
-            }
+                val postagem = intent.getParcelableExtra<Postagem>(POSTAGEM_ID)
         }
     }
 

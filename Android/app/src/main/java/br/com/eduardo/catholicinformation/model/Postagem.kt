@@ -3,8 +3,10 @@ package br.com.eduardo.catholicinformation.model
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 @Entity
+@Parcelize
 data class Postagem (
     @PrimaryKey
     val id: Int,
@@ -15,4 +17,4 @@ data class Postagem (
     val extensao: String,
     val path_paroquia: String,
     val paroquia: String
-)
+): Parcelable
